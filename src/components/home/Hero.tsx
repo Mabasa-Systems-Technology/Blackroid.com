@@ -35,22 +35,14 @@ export function Hero() {
           ))}
         </h1>
 
-        <p className="rise mt-6 max-w-2xl text-lg text-white/80 lg:text-xl" style={{ "--d": "0.5s" } as CSSProperties}>
-          Blackroid combines AI-powered infrastructure with specialist expertise to simplify complex operations, improve
-          efficiency, and deliver measurable business outcomes.
-        </p>
-
-        <div className="rise mt-10" style={{ "--d": "0.6s" } as CSSProperties}>
-          <div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact" variant="light">
-                Discuss Your Business Challenge
-              </ButtonLink>
-              <ButtonLink href="/services" variant="outline-light" arrow={false}>
-                Explore Our Services
-              </ButtonLink>
-            </div>
-          </div>
+        <div className="rise mt-10 lg:mt-12" style={{ "--d": "0.5s" } as CSSProperties}>
+          <ButtonLink
+            href="/contact"
+            variant="light"
+            className="h-14 px-8 text-base shadow-xl shadow-black/25 ring-4 ring-white/15 hover:ring-white/30 sm:h-16 sm:px-10 sm:text-lg"
+          >
+            Discuss Your Business Challenge
+          </ButtonLink>
         </div>
       </div>
     </section>

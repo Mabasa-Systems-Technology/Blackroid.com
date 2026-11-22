@@ -9,10 +9,10 @@ import { cn } from "@/lib/cn";
 
 /** The words that complete "We help organisations ...", one per industry. */
 const phrases: Record<string, string> = {
-  "insurance-operations": "verify claims.",
-  "healthcare-operations": "get paid.",
-  "financial-operations": "report better.",
-  "enterprise-technology-and-transformation": "modernise IT.",
+  "insurance-operations": "verify and process claims.",
+  "healthcare-operations": "recover revenue from claims.",
+  "financial-operations": "cut reconciliation costs.",
+  "enterprise-technology-and-transformation": "modernise critical systems.",
 };
 
 const SLIDE_SECONDS = 4;
@@ -43,13 +43,13 @@ export function ServicesShowcase() {
         <h2 className="sr-only">Industries</h2>
 
         {/* The statement, finished by the active practice. */}
-        <div aria-hidden="true" className="text-headline font-light lg:col-span-5">
+        <div aria-hidden="true" className="text-headline font-light lg:col-span-6">
           <p className="text-ink">We help organisations</p>
-          <div className="relative h-[1.2em] overflow-hidden">
+          <div className="relative h-[2.4em] overflow-hidden">
             <AnimatePresence mode="wait" initial={false}>
               <motion.p
                 key={current.slug}
-                className="absolute inset-x-0 top-0 whitespace-nowrap text-accent"
+                className="absolute inset-x-0 top-0 text-balance text-accent"
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: "-100%", opacity: 0 }}
@@ -62,7 +62,7 @@ export function ServicesShowcase() {
         </div>
 
         {/* One image at a time, titled, changing with the phrase. */}
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-6">
           <Link
             href={`/services/${current.slug}`}
             aria-label={`${current.title}: view service`}
