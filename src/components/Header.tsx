@@ -174,11 +174,11 @@ export function Header() {
                 solid ? "text-ink-soft hover:text-ink" : "text-white/75 hover:text-white",
               )}
             >
-              Login
+              Client Login
             </Link>
             <div className="hidden sm:block">
               <ButtonLink href="/contact" variant={solid ? "primary" : "outline-light"} className="h-11 px-5">
-                Contact Us
+                Contact Blackroid
               </ButtonLink>
             </div>
             <button
@@ -261,13 +261,13 @@ export function Header() {
                   href={site.clientPortalUrl}
                   className="block py-3 text-center text-base font-medium text-ink-soft"
                 >
-                  Login
+                  Client Login
                 </Link>
                 <a href={`mailto:${site.publicEmail}`} className="mb-4 block py-2 text-center text-sm text-muted">
                   {site.publicEmail}
                 </a>
                 <ButtonLink href="/contact" variant="primary" className="w-full">
-                  Contact Us
+                  Contact Blackroid
                 </ButtonLink>
               </motion.div>
             </nav>

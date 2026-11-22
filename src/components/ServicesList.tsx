@@ -17,7 +17,7 @@ export function ServicesList({ items }: { items: Service[] }) {
         const isOpen = open === i;
         return (
           <li key={s.slug} className="border-b border-line-strong">
-            <h2>
+            <h3>
               <button
                 type="button"
                 aria-expanded={isOpen}
@@ -44,7 +44,7 @@ export function ServicesList({ items }: { items: Service[] }) {
                   <Plus strokeWidth={1.5} className="size-5" />
                 </span>
               </button>
-            </h2>
+            </h3>
 
             <div
               id={`service-${s.slug}`}

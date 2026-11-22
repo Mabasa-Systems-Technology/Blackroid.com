@@ -5,7 +5,7 @@ import { useRef, type CSSProperties } from "react";
 import { ButtonLink } from "../ui/Button";
 import { HeroBackground } from "../HeroBackground";
 
-const headline = ["We fix what holds", "your business back."];
+const headline = ["Complex Operations.", "Handled."];
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -35,15 +35,19 @@ export function Hero() {
           ))}
         </h1>
 
-        <p className="rise mt-6 max-w-xl text-lg text-white/80 lg:text-xl" style={{ "--d": "0.5s" } as CSSProperties}>
-          Strategy. Technology. Execution. One accountable team.
+        <p className="rise mt-6 max-w-2xl text-lg text-white/80 lg:text-xl" style={{ "--d": "0.5s" } as CSSProperties}>
+          Blackroid combines AI-powered infrastructure with specialist expertise to simplify complex operations, improve
+          efficiency, and deliver measurable business outcomes.
         </p>
 
         <div className="rise mt-10" style={{ "--d": "0.6s" } as CSSProperties}>
           <div>
             <div className="flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/contact" variant="light">
-                Contact Us
+                Discuss Your Business Challenge
+              </ButtonLink>
+              <ButtonLink href="/services" variant="outline-light" arrow={false}>
+                Explore Our Services
               </ButtonLink>
             </div>
           </div>

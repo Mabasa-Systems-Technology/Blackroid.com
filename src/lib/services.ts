@@ -1,11 +1,22 @@
 import { unsplash } from "./site";
 
-/** The five practices. Older service addresses redirect here (see next.config.ts). */
+/**
+ * Two complementary capabilities: managed business services for defined operational processes,
+ * and enterprise technology and transformation. Older service addresses redirect here (see next.config.ts).
+ *
+ * The managed services are areas Blackroid is developing and exploring commercially.
+ * Do not describe them as regulated, authorised or already operating at scale until that is verified.
+ */
+export type ServiceGroup = "managed" | "technology";
+
 export type Service = {
   slug: string;
   number: string;
+  group: ServiceGroup;
   title: string;
-  /** One short line, shown in lists and on the home page. */
+  /** The industry this area serves, shown on the home page cards. */
+  industry: string;
+  /** A business problem and a potential outcome, in two short sentences. */
   plain: string;
   /** Used for page descriptions and search data. */
   short: string;
@@ -13,90 +24,106 @@ export type Service = {
   capabilities: string[];
   image: string;
   imageAlt: string;
-  /** A related page that belongs to this practice. */
+  /** A related page that belongs to this area. */
   related?: { label: string; href: string };
+};
+
+export const serviceGroups: Record<ServiceGroup, { title: string; intro: string; note?: string }> = {
+  managed: {
+    title: "Managed Business Services",
+    intro:
+      "Blackroid combines intelligent infrastructure and specialist expertise to handle defined operational processes on behalf of organisations.",
+    note: "Areas we are developing and exploring with organisations.",
+  },
+  technology: {
+    title: "Enterprise Technology & Transformation",
+    intro: "We also help organisations improve the systems and infrastructure that support their operations.",
+  },
 };
 
 export const services: Service[] = [
   {
-    slug: "strategy-and-advisory",
+    slug: "insurance-operations",
     number: "01",
-    title: "Strategy & Advisory",
-    plain: "Business strategy, operating models and performance improvement.",
-    short: "Business strategy, operating models and performance improvement.",
-    intro: "We help leadership teams define direction, structure the organisation and improve performance.",
+    group: "managed",
+    title: "Insurance Operations",
+    industry: "Insurance",
+    plain:
+      "Manual claims checking is slow and costly. Intelligent infrastructure and specialist review can speed up verification and keep every decision documented.",
+    short: "Claims verification, assessment support and exception management for insurers.",
+    intro:
+      "Blackroid combines intelligent infrastructure and specialist expertise to handle defined insurance operations on behalf of organisations.",
     capabilities: [
-      "Business and technology strategy",
-      "Operating model design",
-      "Performance improvement",
-      "Feasibility and investment assessment",
+      "Claims verification",
+      "Claims assessment support",
+      "Documentation and evidence review",
+      "Claims exception management",
     ],
-    image: unsplash("photo-1759310610372-c547611af808"),
-    imageAlt: "Executives in a strategy meeting",
+    image: unsplash("photo-1769740333462-9a63bfa914bc"),
+    imageAlt: "A team reviewing documents and figures in a meeting room",
   },
   {
-    slug: "technology-transformation",
+    slug: "healthcare-operations",
     number: "02",
-    title: "Technology Transformation",
-    plain: "Enterprise architecture, modernisation and systems integration.",
-    short: "Enterprise architecture, modernisation and systems integration.",
-    intro: "We plan and deliver the technology change that organisations depend on.",
+    group: "managed",
+    title: "Healthcare Operations",
+    industry: "Healthcare",
+    plain:
+      "Rejected and underpaid claims quietly drain revenue. Reconciliation and exception management can recover payments that would otherwise be lost.",
+    short: "Medical-aid claims reconciliation, billing exception resolution and payment recovery support.",
+    intro:
+      "Blackroid combines intelligent infrastructure and specialist expertise to handle defined healthcare billing and claims operations on behalf of organisations.",
     capabilities: [
-      "Enterprise architecture",
-      "Systems modernisation",
-      "Systems integration",
-      "Cloud and infrastructure",
+      "Medical-aid claims reconciliation",
+      "Billing exception resolution",
+      "Underpaid and rejected claims management",
+      "Payment recovery support",
     ],
     image: unsplash("photo-1606857521015-7f9fcf423740"),
     imageAlt: "Professionals working in a large modern office",
   },
   {
-    slug: "artificial-intelligence-and-data",
+    slug: "financial-operations",
     number: "03",
-    title: "Artificial Intelligence & Data",
-    plain: "AI strategy, intelligent systems and data engineering.",
-    short: "AI strategy, intelligent systems and data engineering.",
-    intro: "We apply AI and data where they create measurable operational value.",
+    group: "managed",
+    title: "Financial Operations",
+    industry: "Financial Services",
+    plain:
+      "Reconciliation and reporting consume skilled time. Intelligent processes and expert oversight can make financial operations faster and more accurate.",
+    short: "Financial reconciliation, fund administration support, reporting and exception management.",
+    intro:
+      "Blackroid combines intelligent infrastructure and specialist expertise to handle defined financial operations on behalf of organisations.",
     capabilities: [
-      "AI strategy and use-case selection",
-      "Intelligent systems and automation",
-      "Data engineering and integration",
-      "Reporting and analytics",
+      "Financial reconciliation",
+      "Fund administration support",
+      "Financial reporting",
+      "Investment operations and exception management",
     ],
-    image: unsplash("photo-1526628953301-3e589a6a8b74"),
-    imageAlt: "Performance dashboards on a monitoring screen",
+    image: unsplash("photo-1549483249-f0b359d1e289"),
+    imageAlt: "A city financial district at dusk",
   },
   {
-    slug: "operations-and-performance",
+    slug: "enterprise-technology-and-transformation",
     number: "04",
-    title: "Operations & Performance",
-    plain: "Operational improvement and business transformation.",
-    short: "Operational improvement and business transformation.",
-    intro: "We improve how organisations operate, from process through to performance.",
-    capabilities: [
-      "Process review and redesign",
-      "Workflow automation",
-      "Performance measurement and reporting",
-      "Transformation programme support",
-    ],
-    image: unsplash("photo-1781559818983-c32838ee3d55"),
-    imageAlt: "An operations manager reviewing a tablet in a warehouse",
-  },
-  {
-    slug: "engineering-and-implementation",
-    number: "05",
-    title: "Engineering & Implementation",
-    plain: "Enterprise engineering and complex programme delivery.",
-    short: "Enterprise engineering and complex programme delivery.",
-    intro: "We build and deliver complex systems with disciplined implementation.",
+    group: "technology",
+    title: "Enterprise Technology & Transformation",
+    industry: "Enterprise Technology",
+    plain:
+      "Legacy systems and disconnected processes slow organisations down. Integration, modernisation and AI can turn them into measurable operational improvements.",
+    short:
+      "Enterprise software engineering, systems integration, legacy modernisation, digital transformation and AI integration.",
+    intro:
+      "We help organisations solve business problems by improving the systems and infrastructure that support their operations.",
     capabilities: [
       "Enterprise software engineering",
-      "Programme and delivery management",
-      "Quality assurance and testing",
-      "Ongoing support",
+      "Systems integration",
+      "Legacy systems modernisation",
+      "Digital transformation",
+      "Business process digitisation",
+      "AI integration into existing business systems",
     ],
-    image: unsplash("photo-1462396240927-52058a6a84ec"),
-    imageAlt: "Glass office towers seen from below",
+    image: unsplash("photo-1584169417032-d34e8d805e8b"),
+    imageAlt: "A corridor of server racks in a data centre",
     related: { label: "Outsource a team", href: "/outsourced-development" },
   },
 ];

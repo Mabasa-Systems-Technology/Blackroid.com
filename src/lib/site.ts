@@ -1,8 +1,9 @@
 export const site = {
   name: "Blackroid",
   legalName: "Blackroid (Pty) Ltd",
-  tagline: "Strategy. Technology. Execution.",
-  description: "Advisory, engineering and transformation services for organisations.",
+  tagline: "Complex Operations. Handled.",
+  description:
+    "Blackroid is a South African AI-native business services company. AI-powered infrastructure and specialist expertise, delivering measurable business outcomes.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, ""),
   locale: "en_ZA",
   country: "South Africa",
@@ -16,14 +17,14 @@ export const site = {
     instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "#",
     x: process.env.NEXT_PUBLIC_X_URL || "#",
   },
-  /** Where the client portal login lives. Until it is set, the Login links open the /login page. */
-  clientPortalUrl: process.env.NEXT_PUBLIC_CLIENT_PORTAL_URL || "/login",
+  /** The client portal, which handles its own sign-in. Nothing is collected on this website. */
+  clientPortalUrl: process.env.NEXT_PUBLIC_CLIENT_PORTAL_URL || "https://portal.blackroid.com",
 } as const;
 
 export const navigation = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Expertise", href: "/services" },
+  { label: "Services", href: "/services" },
   { label: "Outsource", href: "/outsourced-development" },
   { label: "Contact", href: "/contact" },
 ] as const;

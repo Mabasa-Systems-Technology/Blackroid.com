@@ -19,7 +19,7 @@ export function Footer() {
           <div className="lg:col-span-3">
             <Logo tone="light" />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/60">
-              Business advisory, technology and transformation services.
+              AI-powered infrastructure and specialist expertise for complex operations.
             </p>
           </div>
 
@@ -39,7 +39,7 @@ export function Footer() {
                 ))}
                 <li>
                   <Link href={site.clientPortalUrl} className={link}>
-                    Login
+                    Client Login
                   </Link>
                 </li>
                 <li>

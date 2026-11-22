@@ -4,7 +4,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Providers } from "@/components/Providers";
 import { CookieBanner } from "@/components/CookieBanner";
-import { HideOnPortal } from "@/components/HideOnPortal";
 import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
@@ -28,20 +27,20 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Blackroid | Strategy. Technology. Execution.",
+    default: "Blackroid | Complex Operations. Handled.",
     template: "%s | Blackroid",
   },
   description: site.description,
   applicationName: site.name,
   keywords: [
-    "business and technology consulting South Africa",
-    "business advisory",
-    "technology transformation",
-    "enterprise architecture",
-    "AI and data services",
-    "operations and performance improvement",
-    "enterprise engineering",
-    "programme delivery",
+    "AI-native business services South Africa",
+    "managed business services",
+    "insurance claims operations",
+    "healthcare claims reconciliation",
+    "financial operations and reconciliation",
+    "enterprise technology and transformation",
+    "systems integration",
+    "legacy systems modernisation",
   ],
   alternates: { canonical: "/" },
   openGraph: {
@@ -49,7 +48,7 @@ export const metadata: Metadata = {
     locale: site.locale,
     siteName: site.name,
     url: "/",
-    title: "Blackroid | Strategy. Technology. Execution.",
+    title: "Blackroid | Complex Operations. Handled.",
     description: site.description,
   },
   twitter: { card: "summary_large_image" },
@@ -95,16 +94,16 @@ const structuredData = {
       logo: `${site.url}/brand/logo-dark.png`,
       image: `${site.url}/opengraph-image`,
       description: site.description,
-      slogan: "Strategy. Technology. Execution.",
+      slogan: "Complex Operations. Handled.",
       areaServed: { "@type": "Country", name: site.country },
       audience: { "@type": "BusinessAudience", audienceType: "Established businesses, corporations and institutions" },
       knowsAbout: [
-        "Business strategy and advisory",
-        "Technology transformation",
-        "Enterprise architecture",
-        "Artificial intelligence and data",
-        "Operations and performance",
-        "Enterprise engineering",
+        "Managed business services",
+        "Insurance operations",
+        "Healthcare claims and billing operations",
+        "Financial operations",
+        "Enterprise technology and transformation",
+        "Systems integration",
       ],
       ...(site.publicEmail ? { email: site.publicEmail } : {}),
       // Only named people are published as structured data; nothing is invented.
@@ -112,7 +111,7 @@ const structuredData = {
       ...(staff.length ? { employee: staff } : {}),
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Advisory, technology and transformation services",
+        name: "Managed business services and enterprise technology",
         itemListElement: services.map((s) => ({
           "@type": "Offer",
           itemOffered: {
@@ -141,13 +140,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en-ZA" className={`${interTight.variable} ${plexMono.variable}`}>
       <body>
         <Providers>
-          <HideOnPortal>
-            <Header />
-          </HideOnPortal>
+          <Header />
           <main id="main">{children}</main>
-          <HideOnPortal>
-            <Footer />
-          </HideOnPortal>
+          <Footer />
           <CookieBanner />
         </Providers>
         <JsonLd data={structuredData} />

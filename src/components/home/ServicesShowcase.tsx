@@ -7,13 +7,12 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { services } from "@/lib/services";
 import { cn } from "@/lib/cn";
 
-/** The words that complete "We help organisations ...", one per practice. */
+/** The words that complete "We help organisations ...", one per industry. */
 const phrases: Record<string, string> = {
-  "strategy-and-advisory": "set direction.",
-  "technology-transformation": "modernise systems.",
-  "artificial-intelligence-and-data": "apply AI and data.",
-  "operations-and-performance": "perform better.",
-  "engineering-and-implementation": "build and deliver.",
+  "insurance-operations": "verify claims.",
+  "healthcare-operations": "recover payments.",
+  "financial-operations": "reconcile and report.",
+  "enterprise-technology-and-transformation": "modernise systems.",
 };
 
 const SLIDE_SECONDS = 4;
@@ -41,7 +40,7 @@ export function ServicesShowcase() {
         onMouseEnter={() => setHovering(true)}
         onMouseLeave={() => setHovering(false)}
       >
-        <h2 className="sr-only">Expertise</h2>
+        <h2 className="sr-only">Industries</h2>
 
         {/* The statement, finished by the active practice. */}
         <div aria-hidden="true" className="text-headline font-light lg:col-span-5">
@@ -66,7 +65,7 @@ export function ServicesShowcase() {
         <div className="lg:col-span-7">
           <Link
             href={`/services/${current.slug}`}
-            aria-label={`${current.title}: view capability`}
+            aria-label={`${current.title}: view service`}
             className="group relative block aspect-[4/3] overflow-hidden rounded-[4px] rounded-tr-[56px] bg-navy-900"
           >
             {services.map((s, i) => (
@@ -90,8 +89,7 @@ export function ServicesShowcase() {
                   className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-navy-950/10 to-transparent"
                 />
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white lg:p-10">
-                  <p className="font-mono text-xs text-white/70">{s.number}</p>
-                  <p className="mt-2 text-3xl font-light tracking-tight lg:text-4xl">{s.title}</p>
+                  <p className="text-3xl font-light tracking-tight lg:text-4xl">{s.title}</p>
                 </div>
               </div>
             ))}
@@ -106,7 +104,7 @@ export function ServicesShowcase() {
             />
           </Link>
 
-          <div className="mt-5 flex items-center gap-2" role="group" aria-label="Choose a practice">
+          <div className="mt-5 flex items-center gap-2" role="group" aria-label="Choose an industry">
             {services.map((s, i) => (
               <button
                 key={s.slug}

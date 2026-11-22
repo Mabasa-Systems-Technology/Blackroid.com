@@ -3,14 +3,13 @@
 import { useEffect, useState } from "react";
 import { Reveal } from "../ui/Reveal";
 
-/** The last word of the line cycles through what technology alone cannot do, each in its own colour. */
+/** The last word of the line cycles through what we do with complex operations, each in its own colour. */
 const words = [
-  { text: "solve", color: "#e11d48" },
-  { text: "improve", color: "#f97316" },
-  { text: "build", color: "#059669" },
-  { text: "automate", color: "#2563eb" },
-  { text: "modernise", color: "#7c3aed" },
-  { text: "scale", color: "#0891b2" },
+  { text: "handled", color: "#2563eb" },
+  { text: "completed", color: "#059669" },
+  { text: "managed", color: "#7c3aed" },
+  { text: "measured", color: "#0891b2" },
+  { text: "improved", color: "#f97316" },
 ];
 
 export function Intro() {
@@ -28,9 +27,8 @@ export function Intro() {
       <div className="container-site">
         <Reveal>
           <p className="mx-auto max-w-4xl text-center text-headline font-light text-balance text-ink">
-            Every organisation faces challenges that technology alone cannot{" "}
-            {/* Screen readers get the plain sentence; the cycling word is decorative. */}
-            <span className="sr-only">solve.</span>
+            Your complex operations, {/* Screen readers get the plain sentence; the cycling word is decorative. */}
+            <span className="sr-only">handled.</span>
             <span aria-hidden="true">
               <span key={word.text} className="word-swap font-normal" style={{ color: word.color }}>
                 {word.text}

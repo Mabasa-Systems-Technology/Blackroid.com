@@ -20,23 +20,33 @@ const nextConfig: NextConfig = {
     remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com", pathname: "/photo-*" }],
   },
   async redirects() {
+    // Older service addresses land on the matching area (an empty target means the services page).
+    const hub = "enterprise-technology-and-transformation";
     const moved: Array<[string, string]> = [
-      ["technology-consulting", "strategy-and-advisory"],
-      ["systems-integration", "technology-transformation"],
-      ["cloud-and-infrastructure", "technology-transformation"],
-      ["ai-and-automation", "artificial-intelligence-and-data"],
-      ["data-engineering-and-analytics", "artificial-intelligence-and-data"],
-      ["custom-software-development", "engineering-and-implementation"],
+      ["technology-consulting", ""],
+      ["strategy-and-advisory", ""],
+      ["operations-and-performance", ""],
+      ["systems-integration", hub],
+      ["cloud-and-infrastructure", hub],
+      ["technology-transformation", hub],
+      ["ai-and-automation", hub],
+      ["artificial-intelligence-and-data", hub],
+      ["data-engineering-and-analytics", hub],
+      ["custom-software-development", hub],
+      ["engineering-and-implementation", hub],
     ];
+    // Client sign-in lives in the portal, which handles its own authentication.
+    const portal = process.env.NEXT_PUBLIC_CLIENT_PORTAL_URL || "https://portal.blackroid.com";
     const pages = [
       { source: "/careers", destination: "https://www.olyxee.com/careers", permanent: false },
+      { source: "/login", destination: portal, permanent: false },
       { source: "/industries", destination: "/outsourced-development", permanent: true },
       { source: "/business-review", destination: "/outsourced-development", permanent: true },
     ];
     return pages.concat(
       moved.map(([from, to]) => ({
         source: `/services/${from}`,
-        destination: `/services/${to}`,
+        destination: to ? `/services/${to}` : "/services",
         permanent: true,
       })),
     );

@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { BarChart3, Blocks, Cpu, Gauge, LifeBuoy, PackageCheck, RefreshCw, Search, Target } from "lucide-react";
+import {
+  BarChart3,
+  Cpu,
+  Gauge,
+  HeartPulse,
+  Landmark,
+  PackageCheck,
+  ShieldCheck,
+  Target,
+  UserCheck,
+} from "lucide-react";
 import { CtaBand } from "@/components/CtaBand";
 import { Leadership } from "@/components/Leadership";
 import { Principles } from "@/components/Principles";
@@ -12,23 +22,23 @@ import aboutHero from "../../../public/images/about-hero.webp";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Blackroid is an independent business and technology services firm focused on performance, transformation and engineering.",
+    "Blackroid is a South African AI-native services company combining AI-powered infrastructure with specialist expertise to deliver complete business services.",
   alternates: { canonical: "/about" },
 };
 
-const approach = [
-  { icon: Search, label: "Understand the business problem" },
-  { icon: Target, label: "Establish clear objectives" },
-  { icon: PackageCheck, label: "Deliver the appropriate solution" },
-  { icon: LifeBuoy, label: "Support it after delivery" },
+const principles = [
+  { icon: Target, label: "Business outcomes before technology" },
+  { icon: PackageCheck, label: "Complete service delivery" },
+  { icon: Gauge, label: "Operational efficiency and accountability" },
+  { icon: UserCheck, label: "Specialist expertise supported by AI" },
+  { icon: BarChart3, label: "Reliable and measurable results" },
 ];
 
 const focus = [
-  { icon: BarChart3, label: "Business Performance" },
-  { icon: RefreshCw, label: "Technology Transformation" },
-  { icon: Cpu, label: "Artificial Intelligence" },
-  { icon: Blocks, label: "Enterprise Engineering" },
-  { icon: Gauge, label: "Operational Improvement" },
+  { icon: ShieldCheck, label: "Insurance" },
+  { icon: HeartPulse, label: "Healthcare" },
+  { icon: Landmark, label: "Finance" },
+  { icon: Cpu, label: "Technology" },
 ];
 
 export default function AboutPage() {
@@ -49,9 +59,7 @@ export default function AboutPage() {
         </div>
         <div className="container-site grid items-center gap-12 pt-40 pb-16 lg:min-h-[72svh] lg:grid-cols-12 lg:pb-24">
           <div className="lg:col-span-7">
-            <h1 className="rise text-headline font-light text-balance">
-              We solve business problems with strategy and technology.
-            </h1>
+            <h1 className="rise text-headline font-light text-balance">We take responsibility for the work.</h1>
           </div>
           {/* The official B monogram, large, to balance the text column. */}
           <div aria-hidden="true" className="hidden lg:col-span-5 lg:flex lg:justify-end">
@@ -71,21 +79,23 @@ export default function AboutPage() {
               className="space-y-6 text-lg leading-relaxed text-ink-soft lg:col-span-6 lg:col-start-7"
             >
               <p>
-                Blackroid is an independent business and technology services firm. We work with organisations to address
-                complex business challenges through strategic advisory, technology expertise and disciplined
-                implementation.
+                Blackroid is a South African AI-native services company helping businesses operate more efficiently,
+                reduce costs, and achieve better outcomes.
               </p>
               <p>
-                Our capabilities bring together business understanding, engineering and technology to support
-                organisational performance and long-term transformation.
+                We combine AI-powered infrastructure with specialist expertise to take on complex business operations,
+                manage critical processes, and deliver complete services.
+              </p>
+              <p>
+                Our clients focus on growing their businesses while we take responsibility for the work behind them.
               </p>
             </Reveal>
           </div>
 
           <div className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-2">
             {[
-              { title: "How we work", items: approach },
-              { title: "Our focus", items: focus },
+              { title: "Our principles", items: principles },
+              { title: "Where we focus", items: focus },
             ].map((panel, i) => (
               <Reveal key={panel.title} delay={i * 0.1} className="h-full">
                 <div className="h-full rounded-[4px] border border-line bg-paper p-8 lg:p-12">

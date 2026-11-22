@@ -70,16 +70,6 @@ export const clients: Client[] = [
     },
   },
   {
-    // Logo to be added: save as public/clients/inzalo.png, then set `logo` here.
-    name: "InzaloEMS",
-    feedback: {
-      approved: true,
-      quote: "Complex requirements, handled calmly and delivered on time.",
-      person: "Team member",
-      role: "Client team",
-    },
-  },
-  {
     name: "AFHCO (Africa Housing Company)",
     logo: { src: "/clients/afhco.png", width: 263, height: 128, heightClass: "h-10" },
     feedback: {

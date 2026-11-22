@@ -70,10 +70,10 @@ export default async function ServicePage({ params }: Props) {
       <PageHero title={service.title} lead={service.intro}>
         <div className="mt-12 flex flex-col gap-3 sm:flex-row">
           <ButtonLink href={enquiryHref} variant="light">
-            Contact Us
+            Contact Blackroid
           </ButtonLink>
           <ButtonLink href="/services" variant="outline-light" arrow={false}>
-            All expertise
+            All services
           </ButtonLink>
         </div>
       </PageHero>
