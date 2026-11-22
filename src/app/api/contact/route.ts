@@ -78,6 +78,7 @@ export async function POST(req: NextRequest) {
     ["Name", d.name],
     ["Email", d.email],
     ["Company", d.company],
+    ["Phone", d.phone || "Not provided"],
     ["Service of interest", d.service],
     ["Estimated budget", d.budget || "Not provided"],
   ];

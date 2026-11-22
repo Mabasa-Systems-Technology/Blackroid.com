@@ -4,7 +4,7 @@ import { ServicesShowcase } from "@/components/home/ServicesShowcase";
 import { WhyMst } from "@/components/home/WhyMst";
 import { Clients } from "@/components/home/Clients";
 import { CustomerStory } from "@/components/home/CustomerStory";
-import { CtaBand } from "@/components/CtaBand";
+import { HomeCta } from "@/components/home/HomeCta";
 
 export default function HomePage() {
   return (
@@ -15,7 +15,7 @@ export default function HomePage() {
       <Clients />
       <CustomerStory />
       <WhyMst />
-      <CtaBand />
+      <HomeCta />
     </>
   );
 }

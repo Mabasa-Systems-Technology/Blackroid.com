@@ -28,6 +28,13 @@ export const contactSchema = z.object({
     .trim()
     .min(2, "Please enter your company name.")
     .max(160, "Company name is too long."),
+  phone: z
+    .string()
+    .trim()
+    .max(30, "Phone number is too long.")
+    .regex(/^[+()ds-]*$/, "Please use digits, spaces and + only.")
+    .optional()
+    .or(z.literal("")),
   service: z.enum(serviceOptions, { message: "Please choose the capability involved." }),
   budget: z.union([z.enum(budgetOptions), z.literal("")]).optional(),
   message: z

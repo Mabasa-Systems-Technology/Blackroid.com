@@ -11,13 +11,33 @@ import { buttonClasses } from "./ui/Button";
 import { cn } from "@/lib/cn";
 
 type Status = "idle" | "submitting" | "success" | "error";
-type Values = { name: string; email: string; company: string; service: string; budget: string; message: string };
+type Values = {
+  name: string;
+  email: string;
+  company: string;
+  phone: string;
+  service: string;
+  budget: string;
+  message: string;
+};
 type FieldName = keyof Values | "consent";
 type Errors = Partial<Record<FieldName, string>>;
 
 const DRAFT_KEY = "blackroid-enquiry-draft";
 const MIN_MESSAGE = 30;
-const empty: Values = { name: "", email: "", company: "", service: "", budget: "", message: "" };
+const empty: Values = { name: "", email: "", company: "", phone: "", service: "", budget: "", message: "" };
+
+/** The order fields appear on the page, so an error always moves focus to the first one a visitor sees. */
+const fieldOrder: FieldName[] = ["service", "message", "name", "email", "company", "phone", "consent"];
+const required: FieldName[] = ["service", "message", "name", "email", "company", "consent"];
+
+/** One-tap openers, so nobody faces a blank box. */
+const starters = [
+  "Our claims process is slow and manual.",
+  "We lose money on rejected or underpaid claims.",
+  "Reconciliation and reporting take too much time.",
+  "Our systems are old and do not talk to each other.",
+];
 
 const inputBase =
   "block w-full rounded-[3px] border bg-white px-4 py-3.5 text-[1rem] text-ink placeholder:text-muted/60 transition-[border-color,box-shadow] duration-200 outline-none focus:border-ink focus:ring-4 focus:ring-ink/5";
@@ -42,20 +62,56 @@ function TextField({
   id,
   label,
   error,
+  valid,
+  optional,
+  hint,
   children,
 }: {
   id: FieldName;
   label: string;
   error?: string;
+  /** Shows a tick once the field has been filled in correctly. */
+  valid?: boolean;
+  optional?: boolean;
+  hint?: string;
   children: ReactNode;
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-2 block text-sm font-medium text-ink">
+      <label htmlFor={id} className="mb-2 flex items-baseline justify-between text-sm font-medium text-ink">
         {label}
+        {optional && <span className="text-xs font-normal text-muted">Optional</span>}
       </label>
-      {children}
+      <div className="relative">
+        {children}
+        {valid && !error && (
+          <Check
+            aria-hidden="true"
+            strokeWidth={2}
+            className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 text-emerald-600"
+          />
+        )}
+      </div>
+      {hint && !error && <p className="mt-2 text-xs text-muted">{hint}</p>}
       <ErrorText id={`${id}-error`}>{error}</ErrorText>
+    </div>
+  );
+}
+
+/** A numbered step heading, so the form reads as three short parts. */
+function StepHeading({ n, title, note }: { n: number; title: string; note?: string }) {
+  return (
+    <div className="flex items-start gap-4">
+      <span
+        aria-hidden="true"
+        className="flex size-8 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-medium text-white"
+      >
+        {n}
+      </span>
+      <div>
+        <h2 className="text-xl leading-8 font-light tracking-tight text-ink">{title}</h2>
+        {note && <p className="mt-1 text-sm text-muted">{note}</p>}
+      </div>
     </div>
   );
 }
@@ -100,7 +156,7 @@ function ChipGroup({
               />
               <span
                 className={cn(
-                  "inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm transition-colors duration-200",
+                  "inline-flex items-center gap-1.5 rounded-full border px-4 py-2.5 text-sm transition-colors duration-200",
                   "peer-focus-visible:ring-4 peer-focus-visible:ring-ink/10",
                   checked
                     ? "border-ink bg-ink text-white"
@@ -131,6 +187,7 @@ export function ContactForm({ initialService, publicEmail }: { initialService?: 
   const router = useRouter();
   const startedAt = useRef(0);
   const formRef = useRef<HTMLFormElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
 
   // Record when the form became interactive (server-side timing check) and restore any saved draft.
   useEffect(() => {
@@ -154,6 +211,14 @@ export function ContactForm({ initialService, publicEmail }: { initialService?: 
     }
   }, [values, status]);
 
+  // The message box grows with what is typed, so nothing is hidden behind a scrollbar.
+  useEffect(() => {
+    const el = messageRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${Math.max(el.scrollHeight, 144)}px`;
+  }, [values.message]);
+
   const update = (name: keyof Values, value: string) => {
     setValues((v) => ({ ...v, [name]: value }));
     // Once a field has been visited, re-check it live so errors clear as soon as they're fixed.
@@ -165,11 +230,17 @@ export function ContactForm({ initialService, publicEmail }: { initialService?: 
     if (values[name]) setErrors((e) => ({ ...e, [name]: validateField(name, values[name]) }));
   };
 
+  const addStarter = (text: string) => {
+    const current = values.message.trim();
+    update("message", current ? `${current} ${text}` : text);
+    messageRef.current?.focus();
+  };
+
   const describedBy = (id: FieldName, extra?: string) =>
     [errors[id] ? `${id}-error` : null, extra].filter(Boolean).join(" ") || undefined;
 
   const focusFirstError = (errs: Errors) => {
-    const first = (Object.keys(errs) as FieldName[]).find((k) => errs[k]);
+    const first = fieldOrder.find((k) => errs[k]);
     if (first) formRef.current?.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
   };
 
@@ -235,6 +306,11 @@ export function ContactForm({ initialService, publicEmail }: { initialService?: 
   const remaining = Math.max(0, MIN_MESSAGE - values.message.trim().length);
   const errorCount = Object.values(errors).filter(Boolean).length;
 
+  // Progress: how many of the required answers are already valid.
+  const isDone = (f: FieldName) => (f === "consent" ? consent : !validateField(f, values[f as keyof Values]));
+  const doneCount = required.filter(isDone).length;
+  const fieldOk = (f: keyof Values) => !!values[f] && !validateField(f, values[f]);
+
   return (
     <AnimatePresence mode="wait" initial={false}>
       {status === "success" && sent ? (
@@ -278,12 +354,102 @@ export function ContactForm({ initialService, publicEmail }: { initialService?: 
           noValidate
           onSubmit={onSubmit}
           exit={{ opacity: 0, y: -12 }}
-          className="rounded-[4px] border border-line bg-white p-6 sm:p-10"
+          className="relative rounded-[4px] border border-line bg-white p-6 sm:p-10"
         >
-          <fieldset>
-            <legend className="text-xl font-light tracking-tight text-ink">About you</legend>
+          {/* Progress: three short steps, and how far along the visitor is. */}
+          <div className="mb-8" aria-live="polite">
+            <div className="flex items-baseline justify-between text-xs text-muted">
+              <span>Three short steps</span>
+              <span>
+                {doneCount} of {required.length} done
+              </span>
+            </div>
+            <div className="mt-2 h-1 overflow-hidden rounded-full bg-line">
+              <div
+                className="h-full rounded-full bg-accent transition-[width] duration-500 ease-out-expo"
+                style={{ width: `${(doneCount / required.length) * 100}%` }}
+              />
+            </div>
+          </div>
+
+          {/* 1. What do you need */}
+          <section>
+            <StepHeading n={1} title="What do you need help with?" note="Pick the closest match." />
+            <div className="mt-6">
+              <ChipGroup
+                name="service"
+                legend="Area"
+                options={serviceOptions}
+                value={values.service}
+                onChange={(v) => update("service", v)}
+                error={errors.service}
+              />
+            </div>
+          </section>
+
+          {/* 2. Tell us more */}
+          <section className="mt-10 border-t border-line pt-10">
+            <StepHeading n={2} title="Tell us about it" note="A few sentences is enough." />
+            <div className="mt-6 space-y-6">
+              <div>
+                <p className="mb-2 text-xs text-muted">Not sure where to start? Tap one:</p>
+                <div className="flex flex-wrap gap-2">
+                  {starters.map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => addStarter(s)}
+                      className="rounded-full border border-dashed border-line-strong px-3.5 py-1.5 text-left text-[0.8125rem] text-ink-soft transition-colors hover:border-ink hover:text-ink"
+                    >
+                      + {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <TextField id="message" label="Describe the challenge" error={errors.message}>
+                  <textarea
+                    ref={messageRef}
+                    id="message"
+                    name="message"
+                    rows={5}
+                    maxLength={5000}
+                    placeholder="e.g. Our order, warehouse and finance systems do not share data, and monthly reporting takes days."
+                    value={values.message}
+                    onChange={(e) => update("message", e.target.value)}
+                    onBlur={() => blur("message")}
+                    aria-invalid={!!errors.message}
+                    aria-describedby={describedBy("message", "message-count")}
+                    className={cn(
+                      inputBase,
+                      "min-h-36 resize-none",
+                      errors.message ? "border-red-600" : "border-line-strong",
+                    )}
+                  />
+                </TextField>
+                <p id="message-count" className="mt-2 text-right text-xs text-muted">
+                  {remaining > 0 ? `${remaining} more characters needed` : `${values.message.length} / 5000`}
+                </p>
+              </div>
+
+              <ChipGroup
+                name="budget"
+                legend="Indicative budget"
+                options={budgetOptions}
+                value={values.budget}
+                onChange={(v) => update("budget", v)}
+                error={errors.budget}
+                optional
+              />
+            </div>
+          </section>
+
+          {/* 3. Your details */}
+          <section className="mt-10 border-t border-line pt-10">
+            <StepHeading n={3} title="Your details" note="So we know who to reply to." />
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
-              <TextField id="name" label="Full name" error={errors.name}>
+              <TextField id="name" label="Full name" error={errors.name} valid={touched.name && fieldOk("name")}>
                 <input
                   id="name"
                   name="name"
@@ -296,10 +462,10 @@ export function ContactForm({ initialService, publicEmail }: { initialService?: 
                   onBlur={() => blur("name")}
                   aria-invalid={!!errors.name}
                   aria-describedby={describedBy("name")}
-                  className={cn(inputBase, errors.name ? "border-red-600" : "border-line-strong")}
+                  className={cn(inputBase, "pr-11", errors.name ? "border-red-600" : "border-line-strong")}
                 />
               </TextField>
-              <TextField id="email" label="Work email" error={errors.email}>
+              <TextField id="email" label="Work email" error={errors.email} valid={touched.email && fieldOk("email")}>
                 <input
                   id="email"
                   name="email"
@@ -313,75 +479,56 @@ export function ContactForm({ initialService, publicEmail }: { initialService?: 
                   onBlur={() => blur("email")}
                   aria-invalid={!!errors.email}
                   aria-describedby={describedBy("email")}
-                  className={cn(inputBase, errors.email ? "border-red-600" : "border-line-strong")}
+                  className={cn(inputBase, "pr-11", errors.email ? "border-red-600" : "border-line-strong")}
                 />
               </TextField>
-              <div className="sm:col-span-2">
-                <TextField id="company" label="Company" error={errors.company}>
-                  <input
-                    id="company"
-                    name="company"
-                    type="text"
-                    autoComplete="organization"
-                    placeholder="Company name"
-                    maxLength={160}
-                    value={values.company}
-                    onChange={(e) => update("company", e.target.value)}
-                    onBlur={() => blur("company")}
-                    aria-invalid={!!errors.company}
-                    aria-describedby={describedBy("company")}
-                    className={cn(inputBase, errors.company ? "border-red-600" : "border-line-strong")}
-                  />
-                </TextField>
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset className="mt-10 border-t border-line pt-10">
-            <legend className="sr-only">Your challenge</legend>
-            <p aria-hidden="true" className="text-xl font-light tracking-tight text-ink">
-              Your challenge
-            </p>
-            <div className="mt-6 space-y-8">
-              <ChipGroup
-                name="service"
-                legend="Which capability is involved?"
-                options={serviceOptions}
-                value={values.service}
-                onChange={(v) => update("service", v)}
-                error={errors.service}
-              />
-              <ChipGroup
-                name="budget"
-                legend="Indicative budget"
-                options={budgetOptions}
-                value={values.budget}
-                onChange={(v) => update("budget", v)}
-                error={errors.budget}
+              <TextField
+                id="company"
+                label="Company"
+                error={errors.company}
+                valid={touched.company && fieldOk("company")}
+              >
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  autoComplete="organization"
+                  placeholder="Company name"
+                  maxLength={160}
+                  value={values.company}
+                  onChange={(e) => update("company", e.target.value)}
+                  onBlur={() => blur("company")}
+                  aria-invalid={!!errors.company}
+                  aria-describedby={describedBy("company")}
+                  className={cn(inputBase, "pr-11", errors.company ? "border-red-600" : "border-line-strong")}
+                />
+              </TextField>
+              <TextField
+                id="phone"
+                label="Phone"
                 optional
-              />
-              <div>
-                <TextField id="message" label="Describe the challenge" error={errors.message}>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={6}
-                    maxLength={5000}
-                    placeholder="e.g. Our order, warehouse and finance systems do not share data, and monthly reporting takes days. We need an integrated approach and a delivery plan for the next two quarters."
-                    value={values.message}
-                    onChange={(e) => update("message", e.target.value)}
-                    onBlur={() => blur("message")}
-                    aria-invalid={!!errors.message}
-                    aria-describedby={describedBy("message", "message-count")}
-                    className={cn(inputBase, "resize-y", errors.message ? "border-red-600" : "border-line-strong")}
-                  />
-                </TextField>
-                <p id="message-count" className="mt-2 text-right text-xs text-muted">
-                  {remaining > 0 ? `${remaining} more characters needed` : `${values.message.length} / 5000`}
-                </p>
-              </div>
+                error={errors.phone}
+                valid={touched.phone && fieldOk("phone")}
+                hint="Only if you would like a call."
+              >
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  placeholder="+27 71 000 0000"
+                  maxLength={30}
+                  value={values.phone}
+                  onChange={(e) => update("phone", e.target.value)}
+                  onBlur={() => blur("phone")}
+                  aria-invalid={!!errors.phone}
+                  aria-describedby={describedBy("phone")}
+                  className={cn(inputBase, "pr-11", errors.phone ? "border-red-600" : "border-line-strong")}
+                />
+              </TextField>
             </div>
-          </fieldset>
+          </section>
 
           {/* Honeypot - hidden from people and assistive technology. */}
           <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">

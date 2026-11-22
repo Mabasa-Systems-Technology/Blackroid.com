@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CalendarCheck, Clock, Plus, UserCheck, Users } from "lucide-react";
+import { CalendarCheck, CalendarX, Clock, Hourglass, Plus, UserCheck, UserX, Users } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 };
 
 const pains = [
-  { title: "Recruitment takes months." },
-  { title: "Engineers who do not perform." },
-  { title: "Deadlines that keep slipping." },
+  { icon: Hourglass, title: "Recruitment takes months." },
+  { icon: UserX, title: "Engineers who do not perform." },
+  { icon: CalendarX, title: "Deadlines that keep slipping." },
 ];
 
 const hubs = [
@@ -117,7 +117,12 @@ export default function OutsourcedDevelopmentPage() {
             {pains.map((p, i) => (
               <li key={p.title}>
                 <Reveal delay={i * 0.08}>
-                  <p className="border-t border-ink pt-6 text-2xl font-light tracking-tight lg:text-3xl">{p.title}</p>
+                  <div className="border-t border-ink pt-6">
+                    <span className="flex size-14 items-center justify-center rounded-full border border-line-strong bg-white text-accent">
+                      <p.icon aria-hidden="true" strokeWidth={1.5} className="size-7" />
+                    </span>
+                    <p className="mt-6 text-2xl font-light tracking-tight lg:text-3xl">{p.title}</p>
+                  </div>
                 </Reveal>
               </li>
             ))}

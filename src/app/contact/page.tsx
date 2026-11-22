@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { Mail, MessageCircle, Phone } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { SelectedWork } from "@/components/home/SelectedWork";
 import { Reveal } from "@/components/ui/Reveal";
@@ -62,14 +63,36 @@ export default async function ContactPage({ searchParams }: Props) {
                   </li>
                 ))}
               </ol>
-              {site.publicEmail && (
-                <p className="mt-8 text-sm text-muted">
-                  Prefer email?{" "}
-                  <a href={`mailto:${site.publicEmail}`} className="text-ink underline underline-offset-4">
-                    {site.publicEmail}
-                  </a>
-                </p>
-              )}
+              <div className="mt-10">
+                <h2 className="text-xl font-light tracking-tight text-ink">Prefer to talk?</h2>
+                <ul className="mt-6 border-t border-line-strong">
+                  <li className="border-b border-line-strong">
+                    <a href={`tel:${site.phone}`} className="group flex items-center gap-4 py-4">
+                      <Phone aria-hidden="true" strokeWidth={1.5} className="size-5 text-accent" />
+                      <span className="text-ink transition-colors group-hover:text-accent">{site.phoneDisplay}</span>
+                    </a>
+                  </li>
+                  <li className="border-b border-line-strong">
+                    <a
+                      href={site.social.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-4 py-4"
+                    >
+                      <MessageCircle aria-hidden="true" strokeWidth={1.5} className="size-5 text-accent" />
+                      <span className="text-ink transition-colors group-hover:text-accent">Chat on WhatsApp</span>
+                    </a>
+                  </li>
+                  {site.publicEmail && (
+                    <li className="border-b border-line-strong">
+                      <a href={`mailto:${site.publicEmail}`} className="group flex items-center gap-4 py-4">
+                        <Mail aria-hidden="true" strokeWidth={1.5} className="size-5 text-accent" />
+                        <span className="text-ink transition-colors group-hover:text-accent">{site.publicEmail}</span>
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </div>
             </div>
           </aside>
         </div>

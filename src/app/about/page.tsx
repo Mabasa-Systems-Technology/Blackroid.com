@@ -12,7 +12,7 @@ import {
   UserCheck,
 } from "lucide-react";
 import { CtaBand } from "@/components/CtaBand";
-import { Leadership } from "@/components/Leadership";
+// import { Leadership } from "@/components/Leadership"; // hidden for now: "The people behind the work."
 import { Principles } from "@/components/Principles";
 import { Reveal } from "@/components/ui/Reveal";
 import { unsplash } from "@/lib/site";
@@ -117,7 +117,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Leadership />
+      {/* Hidden for now ("The people behind the work."); restore by uncommenting this and the import above. */}
+      {/* <Leadership /> */}
 
       <section className="relative isolate -mt-20 overflow-hidden rounded-t-[3rem] bg-navy-950 lg:-mt-28 lg:rounded-t-[6rem]">
         <div className="relative aspect-[16/9] max-h-[640px] w-full sm:aspect-[21/9]">

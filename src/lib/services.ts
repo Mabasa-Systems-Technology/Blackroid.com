@@ -1,5 +1,3 @@
-import { unsplash } from "./site";
-
 /**
  * Two complementary capabilities: managed business services for defined operational processes,
  * and enterprise technology and transformation. Older service addresses redirect here (see next.config.ts).
@@ -59,8 +57,8 @@ export const services: Service[] = [
       "Documentation and evidence review",
       "Claims exception management",
     ],
-    image: unsplash("photo-1769740333462-9a63bfa914bc"),
-    imageAlt: "A team reviewing documents and figures in a meeting room",
+    image: "/images/insurance-operations.webp",
+    imageAlt: "A smiling specialist standing beside a whiteboard with the word insurance written on it",
   },
   {
     slug: "healthcare-operations",
@@ -79,8 +77,8 @@ export const services: Service[] = [
       "Underpaid and rejected claims management",
       "Payment recovery support",
     ],
-    image: unsplash("photo-1606857521015-7f9fcf423740"),
-    imageAlt: "Professionals working in a large modern office",
+    image: "/images/healthcare-operations.webp",
+    imageAlt: "A doctor and a nurse reviewing a patient file together",
   },
   {
     slug: "financial-operations",
@@ -99,8 +97,8 @@ export const services: Service[] = [
       "Financial reporting",
       "Investment operations and exception management",
     ],
-    image: unsplash("photo-1549483249-f0b359d1e289"),
-    imageAlt: "A city financial district at dusk",
+    image: "/images/financial-operations.webp",
+    imageAlt: "A finance specialist reviewing documents beside a finance review board",
   },
   {
     slug: "enterprise-technology-and-transformation",
@@ -122,8 +120,8 @@ export const services: Service[] = [
       "Business process digitisation",
       "AI integration into existing business systems",
     ],
-    image: unsplash("photo-1584169417032-d34e8d805e8b"),
-    imageAlt: "A corridor of server racks in a data centre",
+    image: "/images/enterprise-transformation.webp",
+    imageAlt: "Engineers at their desks working through a system problem together",
     related: { label: "Outsource a team", href: "/outsourced-development" },
   },
 ];
