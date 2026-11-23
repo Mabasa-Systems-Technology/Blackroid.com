@@ -6,6 +6,7 @@
  * All entries below are currently switched on (approved: true) as placeholders; set to false to hide one.
  *
  * PLACEHOLDER: every quote below is temporary text written to show how the rotating feedback looks.
+ * It has been rewritten to match Blackroid's positioning, but it is still NOT anyone's own words.
  * Names and roles for Olyxee, FreightShift, TechXM and AFHCO are real; their quotes are NOT their words.
  * Replace each quote with the person's own approved words before it is shown publicly.
  */
@@ -31,7 +32,7 @@ export const clients: Client[] = [
     logo: { src: "/clients/anthropic.png", width: 1116, height: 128, heightClass: "h-5" },
     feedback: {
       approved: true,
-      quote: "A clear, dependable team that kept us informed at every step.",
+      quote: "They took responsibility for the work and kept us informed at every step.",
       person: "Team member",
       role: "Client team",
     },
@@ -41,7 +42,7 @@ export const clients: Client[] = [
     logo: { src: "/clients/olyxee.png", width: 127, height: 128, heightClass: "h-10" },
     feedback: {
       approved: true,
-      quote: "They understood what we needed before we finished explaining it.",
+      quote: "They understood the business problem first, then delivered the solution to it.",
       person: "Alisha Fatima",
       role: "Technical Product Manager",
       photo: "/people/alisha-fatima.webp",
@@ -52,7 +53,7 @@ export const clients: Client[] = [
     logo: { src: "/clients/freightshift.png", width: 836, height: 128, heightClass: "h-8" },
     feedback: {
       approved: true,
-      quote: "Our operations run noticeably smoother since the work was delivered.",
+      quote: "They looked at how our operation actually runs, not only the software around it.",
       person: "Jack Maluleke",
       role: "CEO and Founder",
       photo: "/people/jack-maluleke.webp",
@@ -63,7 +64,7 @@ export const clients: Client[] = [
     logo: { src: "/clients/techxm.png", width: 317, height: 128, heightClass: "h-9" },
     feedback: {
       approved: true,
-      quote: "Practical, honest and quick to respond. Exactly what we wanted.",
+      quote: "Specialist depth when we needed it, without adding permanent headcount.",
       person: "Brian Motsweni",
       role: "CTO",
       photo: "/people/brian-motsweni.webp",
@@ -74,7 +75,7 @@ export const clients: Client[] = [
     logo: { src: "/clients/afhco.png", width: 263, height: 128, heightClass: "h-10" },
     feedback: {
       approved: true,
-      quote: "A partner that cared about the outcome, not just the delivery.",
+      quote: "A partner accountable for the outcome, not just the delivery.",
       person: "Trust",
       role: "Building Manager",
     },

@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "motion/react";
-import { User } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { Quote, User } from "lucide-react";
 import { testimonials } from "@/lib/clients";
 import { cn } from "@/lib/cn";
 import { Reveal } from "../ui/Reveal";
@@ -18,6 +18,9 @@ export function Clients() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const row = useRef<HTMLUListElement>(null);
+  const reduceMotion = useReducedMotion();
+  // The line under the current logo counts down to the next client.
+  const counting = !paused && !reduceMotion && testimonials.length > 1;
 
   // On a narrow screen the logo row scrolls; keep the current logo centred in it.
   useEffect(() => {
@@ -85,20 +88,22 @@ export function Clients() {
                   ) : (
                     <span className="truncate text-sm font-medium tracking-tight text-ink">{c.name}</span>
                   )}
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      "absolute inset-x-0 bottom-0 h-px transition-colors duration-300",
-                      i === active ? "bg-accent" : "bg-transparent",
+                  <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-0.5 bg-transparent">
+                    {i === active && (
+                      <span
+                        key={`${active}-${counting}`}
+                        className="block h-full w-full origin-left bg-accent"
+                        style={counting ? { animation: `bar-fill ${SLIDE_MS}ms linear forwards` } : undefined}
+                      />
                     )}
-                  />
+                  </span>
                 </button>
               </li>
             ))}
           </ul>
           <div className="border-b border-line-strong" />
 
-          <div className="min-h-[11rem] py-10 lg:py-14">
+          <div className="min-h-[19rem] py-12 lg:min-h-[20rem] lg:py-16">
             <AnimatePresence mode="wait">
               <motion.figure
                 key={t.name}
@@ -107,31 +112,31 @@ export function Clients() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.35 }}
                 role="tabpanel"
-                className="grid items-center gap-8 lg:grid-cols-12 lg:gap-16"
+                className="max-w-4xl"
               >
-                <figcaption className="flex items-center gap-5 lg:col-span-4">
-                  <div className="relative flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-full bg-paper text-muted lg:size-24">
+                <Quote aria-hidden="true" strokeWidth={1.25} className="size-9 text-accent" />
+                <blockquote className="mt-6 text-2xl leading-snug font-light text-balance text-ink lg:text-4xl">
+                  {t.feedback.quote}
+                </blockquote>
+                <figcaption className="mt-10 flex items-center gap-5 border-t border-line pt-8">
+                  <div className="relative flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-full bg-paper text-muted">
                     {t.feedback.photo ? (
                       <Image
                         src={t.feedback.photo}
                         alt={t.feedback.person}
                         fill
-                        sizes="96px"
+                        sizes="56px"
                         className="object-cover"
                       />
                     ) : (
-                      <User aria-hidden="true" strokeWidth={1.5} className="size-8" />
+                      <User aria-hidden="true" strokeWidth={1.5} className="size-6" />
                     )}
                   </div>
                   <p className="min-w-0 text-sm text-muted">
-                    <span className="block text-lg font-medium text-ink">{t.feedback.person}</span>
-                    {t.feedback.role}
-                    <span className="block">{t.name}</span>
+                    <span className="block text-base font-medium text-ink">{t.feedback.person}</span>
+                    {t.feedback.role}, {t.name}
                   </p>
                 </figcaption>
-                <blockquote className="text-xl leading-snug font-light text-ink lg:col-span-8 lg:text-3xl">
-                  &ldquo;{t.feedback.quote}&rdquo;
-                </blockquote>
               </motion.figure>
             </AnimatePresence>
           </div>
