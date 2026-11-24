@@ -9,10 +9,10 @@ import { cn } from "@/lib/cn";
 
 /** The words that complete "We help organisations ...", one per industry. */
 const phrases: Record<string, string> = {
-  "insurance-operations": "verify and process claims.",
-  "healthcare-operations": "recover revenue from claims.",
-  "financial-operations": "cut reconciliation costs.",
-  "enterprise-technology-and-transformation": "modernise critical systems.",
+  "insurance-operations": "run their claims operations.",
+  "healthcare-operations": "run billing and claims operations.",
+  "financial-operations": "run fund and financial operations.",
+  "enterprise-technology-and-transformation": "modernise systems and processes.",
 };
 
 const SLIDE_SECONDS = 4;

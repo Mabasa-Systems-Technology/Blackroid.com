@@ -27,7 +27,7 @@ export function Intro() {
       <div className="container-site">
         <Reveal>
           <p className="mx-auto max-w-4xl text-center text-headline font-light text-balance text-ink">
-            Hand over the complex operations. Get back{" "}
+            Hand over the boring operations. Get back{" "}
             {/* Screen readers get the plain sentence; the cycling word is decorative. */}
             <span className="sr-only">time, focus, margin and control.</span>
             <span aria-hidden="true">

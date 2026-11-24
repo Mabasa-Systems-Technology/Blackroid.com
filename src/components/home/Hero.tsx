@@ -5,7 +5,7 @@ import { useRef, type CSSProperties } from "react";
 import { ButtonLink } from "../ui/Button";
 import { HeroBackground } from "../HeroBackground";
 
-const headline = ["Complex Operations.", "Handled."];
+const headline = ["We solve what slows", "your business down."];
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
