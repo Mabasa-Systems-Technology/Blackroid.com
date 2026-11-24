@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import { CtaBand } from "@/components/CtaBand";
 import { Photo, Section } from "@/components/story/StoryParts";
 import { Reveal } from "@/components/ui/Reveal";
-import { freightshiftStory as story } from "@/lib/stories";
+import { freightshiftStory as story, storyJsonLd } from "@/lib/stories";
 import teamFloor from "../../../../public/images/stories/freightshift-team-floor.webp";
 import siteVisit from "../../../../public/images/stories/freightshift-site-visit.webp";
 import atTheDoor from "../../../../public/images/stories/freightshift-at-the-door.webp";
@@ -11,16 +12,23 @@ import teamWarehouse from "../../../../public/images/stories/freightshift-team-w
 import ceoForklift from "../../../../public/images/stories/freightshift-ceo-forklift.webp";
 import ceoPortrait from "../../../../public/images/stories/freightshift-ceo-portrait.webp";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: story.title,
   description:
     "How Blackroid approaches logistics transformation as a business problem first, for a China to South Africa freight forwarder.",
-  alternates: { canonical: story.href },
-};
+  path: story.href,
+  type: "article",
+});
 
 export default function FreightShiftStoryPage() {
   return (
     <>
+      <JsonLd
+        data={storyJsonLd(
+          story,
+          "How Blackroid approaches logistics transformation as a business problem first, for a China to South Africa freight forwarder.",
+        )}
+      />
       <header className="bg-white pt-36 pb-12 lg:pt-44 lg:pb-16">
         <div className="container-site">
           <p className="rise text-sm font-medium tracking-wide text-accent uppercase">Customer story</p>

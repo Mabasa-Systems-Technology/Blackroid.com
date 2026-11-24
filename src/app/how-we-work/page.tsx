@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { Plus } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { CtaBand } from "@/components/CtaBand";
@@ -6,12 +6,12 @@ import { JsonLd } from "@/components/JsonLd";
 import { Reveal } from "@/components/ui/Reveal";
 import { stages } from "@/lib/process";
 
-export const metadata: Metadata = {
-  title: "How We Work",
+export const metadata = pageMetadata({
+  title: "How We Work: From Challenge to Delivery",
   description:
-    "How Blackroid works: Understand the Challenge, Define the Solution, Coordinate Delivery, Measure and Improve, with clear deliverables, responsibilities and accountability at every step.",
-  alternates: { canonical: "/how-we-work" },
-};
+    "Four steps: understand the challenge, define the solution, coordinate delivery, then measure and improve, with clear deliverables and accountability throughout.",
+  path: "/how-we-work",
+});
 
 const models = [
   {

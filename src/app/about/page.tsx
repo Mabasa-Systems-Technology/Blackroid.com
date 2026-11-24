@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import {
   BarChart3,
@@ -19,12 +19,12 @@ import { unsplash } from "@/lib/site";
 import markLight from "../../../public/brand/mark-light.png";
 import aboutHero from "../../../public/images/about-hero.webp";
 
-export const metadata: Metadata = {
-  title: "About",
+export const metadata = pageMetadata({
+  title: "About: AI-Native Business Services",
   description:
     "Blackroid is a South African AI-native services company combining AI-powered infrastructure with specialist expertise to deliver complete business services.",
-  alternates: { canonical: "/about" },
-};
+  path: "/about",
+});
 
 const principles = [
   { icon: Target, label: "Business outcomes before technology" },

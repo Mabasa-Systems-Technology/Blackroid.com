@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { LogIn } from "lucide-react";
 import { ButtonLink } from "./ui/Button";
 import { navigation, site } from "@/lib/site";
 import { cn } from "@/lib/cn";
@@ -244,7 +245,7 @@ export function Header() {
                     <Link
                       href={item.href}
                       aria-current={isActive(pathname, item.href) ? "page" : undefined}
-                      className="block border-b border-line py-5 text-[2rem] font-light tracking-tight text-ink"
+                      className="block border-b border-line py-4 text-[1.875rem] font-light tracking-tight text-ink"
                     >
                       {item.label}
                     </Link>
@@ -257,18 +258,25 @@ export function Header() {
                 transition={{ delay: 0.5 }}
                 className="mt-10"
               >
-                <Link
-                  href={site.clientPortalUrl}
-                  className="block py-3 text-center text-base font-medium text-ink-soft"
-                >
-                  Client Login
-                </Link>
-                <a href={`mailto:${site.publicEmail}`} className="mb-4 block py-2 text-center text-sm text-muted">
-                  {site.publicEmail}
-                </a>
-                <ButtonLink href="/contact" variant="primary" className="w-full">
+                <ButtonLink href="/contact" variant="primary" className="h-14 w-full text-base">
                   Contact Blackroid
                 </ButtonLink>
+
+                {/* Existing clients: a real button with an icon and a caption, so it cannot be missed. */}
+                <div className="mt-6 rounded-[4px] bg-paper p-4">
+                  <p className="mb-3 text-center text-xs text-muted">Already a Blackroid client?</p>
+                  <Link
+                    href={site.clientPortalUrl}
+                    className="flex h-14 w-full items-center justify-center gap-3 rounded-[3px] border-2 border-ink bg-white text-base font-medium text-ink transition-colors active:bg-ink active:text-white"
+                  >
+                    <LogIn aria-hidden="true" strokeWidth={1.75} className="size-5" />
+                    Client Login
+                  </Link>
+                </div>
+
+                <a href={`mailto:${site.publicEmail}`} className="mt-5 block py-2 text-center text-sm text-muted">
+                  {site.publicEmail}
+                </a>
               </motion.div>
             </nav>
           </motion.div>

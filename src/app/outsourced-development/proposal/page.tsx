@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { ProposalForm } from "@/components/ProposalForm";
 import { Reveal } from "@/components/ui/Reveal";
 import { site, unsplash } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Request a team proposal",
   description:
     "Tell Blackroid what capability you need to add and for how long. We will propose the team, the structure and the terms.",
-  alternates: { canonical: "/outsourced-development/proposal" },
-};
+  path: "/outsourced-development/proposal",
+});
 
 const next = [
   { title: "We read your request", text: "We look at the capability, duration and context." },

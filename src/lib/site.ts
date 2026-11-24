@@ -3,8 +3,11 @@ export const site = {
   legalName: "Blackroid (Pty) Ltd",
   tagline: "Complex Operations. Handled.",
   description:
-    "Blackroid is a South African AI-native business services company. AI-powered infrastructure and specialist expertise, delivering measurable business outcomes.",
-  url: (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, ""),
+    "AI-native business services in South Africa: AI-powered infrastructure and specialist expertise for insurance, healthcare, finance and enterprise technology.",
+  url: (
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.NODE_ENV === "production" ? "https://blackroid.com" : "http://localhost:3000")
+  ).replace(/\/$/, ""),
   locale: "en_ZA",
   country: "South Africa",
   publicEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@blackroid.com",

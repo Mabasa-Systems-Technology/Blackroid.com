@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import { site } from "./site";
 import freightshiftThumb from "../../public/images/stories/freightshift-ceo.webp";
 import techxmThumb from "../../public/images/stories/techxm-brian.webp";
 
@@ -52,3 +53,35 @@ export const techxmStory: Story = {
 };
 
 export const stories: Story[] = [freightshiftStory, techxmStory];
+
+/** Article and breadcrumb data, so search engines understand each story page. */
+export function storyJsonLd(story: Story, description: string) {
+  const url = `${site.url}${story.href}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: story.title,
+        description,
+        url,
+        mainEntityOfPage: url,
+        datePublished: story.dateISO,
+        dateModified: story.dateISO,
+        image: `${site.url}${story.thumbnail.src}`,
+        inLanguage: "en-ZA",
+        about: { "@type": "Organization", name: story.client, url: story.url },
+        author: { "@id": `${site.url}/#organization` },
+        publisher: { "@id": `${site.url}/#organization` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+          { "@type": "ListItem", position: 2, name: "Customer stories", item: `${site.url}/#story-heading` },
+          { "@type": "ListItem", position: 3, name: story.title, item: url },
+        ],
+      },
+    ],
+  };
+}

@@ -1,23 +1,31 @@
-import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import { CtaBand } from "@/components/CtaBand";
 import { Photo, Section } from "@/components/story/StoryParts";
 import { Reveal } from "@/components/ui/Reveal";
-import { techxmStory as story } from "@/lib/stories";
+import { techxmStory as story, storyJsonLd } from "@/lib/stories";
 import office from "../../../../public/images/stories/techxm-office.webp";
 import discussion from "../../../../public/images/stories/techxm-discussion.webp";
 import brian from "../../../../public/images/stories/techxm-brian.webp";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: story.title,
   description:
     "How specialist engineering from Blackroid helps TechXM take on more complex projects without growing its permanent cost base.",
-  alternates: { canonical: story.href },
-};
+  path: story.href,
+  type: "article",
+});
 
 export default function TechXmStoryPage() {
   return (
     <>
+      <JsonLd
+        data={storyJsonLd(
+          story,
+          "How specialist engineering from Blackroid helps TechXM take on more complex projects without growing its permanent cost base.",
+        )}
+      />
       <header className="bg-white pt-36 pb-12 lg:pt-44 lg:pb-16">
         <div className="container-site">
           <p className="rise text-sm font-medium tracking-wide text-accent uppercase">Customer story</p>

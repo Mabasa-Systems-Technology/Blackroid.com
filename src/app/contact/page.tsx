@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { Mail, MessageCircle, Phone } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
@@ -6,11 +6,12 @@ import { SelectedWork } from "@/components/home/SelectedWork";
 import { Reveal } from "@/components/ui/Reveal";
 import { site, unsplash } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Contact Blackroid to discuss your organisation's needs.",
-  alternates: { canonical: "/contact" },
-};
+export const metadata = pageMetadata({
+  title: "Contact: Discuss Your Business Challenge",
+  description:
+    "Talk to Blackroid about handing over complex operations or improving your enterprise systems. Tell us the challenge and we will tell you the next step.",
+  path: "/contact",
+});
 
 const nextSteps = [
   { title: "We read your enquiry", text: "The team reviews what you've shared." },

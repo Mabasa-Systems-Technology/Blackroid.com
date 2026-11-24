@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { CalendarCheck, CalendarX, Clock, Hourglass, Plus, UserCheck, UserX, Users } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
@@ -9,12 +9,12 @@ import { ButtonLink } from "@/components/ui/Button";
 import { unsplash } from "@/lib/site";
 import teamsHero from "../../../public/images/dedicated-teams.webp";
 
-export const metadata: Metadata = {
-  title: "Outsource Your Team",
+export const metadata = pageMetadata({
+  title: "Outsource Your Engineering Team",
   description:
-    "Skip recruitment. Blackroid provides an experienced team accountable for delivering your solution on time, from South Africa, Pakistan and the UK.",
-  alternates: { canonical: "/outsourced-development" },
-};
+    "Skip recruitment. Blackroid provides an experienced team, accountable for delivering your solution on time, from South Africa, Pakistan and the UK.",
+  path: "/outsourced-development",
+});
 
 const pains = [
   { icon: Hourglass, title: "Recruitment takes months." },

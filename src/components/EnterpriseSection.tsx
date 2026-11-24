@@ -1,34 +1,46 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Code, Cpu, Plug, RefreshCw, Rocket, Workflow } from "lucide-react";
 import type { Service } from "@/lib/services";
 import { Reveal } from "./ui/Reveal";
 import meeting from "../../public/images/enterprise-meeting.webp";
 import engineering from "../../public/images/enterprise-engineering.webp";
 
+/** Short labels with an icon each, so the section can be scanned in a few seconds. */
+const highlights = [
+  { icon: Code, label: "Software engineering" },
+  { icon: Plug, label: "Systems integration" },
+  { icon: RefreshCw, label: "Legacy modernisation" },
+  { icon: Rocket, label: "Digital transformation" },
+  { icon: Workflow, label: "Process digitisation" },
+  { icon: Cpu, label: "AI integration" },
+];
+
 /**
- * Enterprise Technology & Transformation, laid out on its own: capabilities as an open grid
- * beside two photographs, instead of the accordion used for the managed services.
+ * Enterprise Technology & Transformation, laid out on its own: a selling heading, six icon tiles
+ * and two photographs, instead of the accordion used for the managed services.
  */
-export function EnterpriseSection({ service, title, intro }: { service: Service; title: string; intro: string }) {
+export function EnterpriseSection({ service, label, heading }: { service: Service; label: string; heading: string }) {
   return (
     <section className="bg-paper py-20 lg:py-32">
       <div className="container-site grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
         <div className="lg:col-span-6">
           <Reveal>
-            <h2 className="text-headline font-light text-balance">{title}</h2>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">{intro}</p>
+            <p className="text-sm font-medium tracking-wide text-accent uppercase">{label}</p>
+            <h2 className="mt-4 text-headline font-light text-balance">{heading}</h2>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <ul className="mt-10 grid border-t border-line-strong sm:grid-cols-2 sm:gap-x-10">
-              {service.capabilities.map((c) => (
+            <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {highlights.map((h) => (
                 <li
-                  key={c}
-                  className="flex items-start gap-3 border-b border-line-strong py-4 text-[1.0625rem] text-ink"
+                  key={h.label}
+                  className="flex flex-col gap-4 rounded-[4px] border border-line bg-white p-5 transition-colors duration-300 hover:border-accent/40"
                 >
-                  <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" />
-                  {c}
+                  <span className="flex size-10 items-center justify-center rounded-full bg-accent-wash text-accent">
+                    <h.icon aria-hidden="true" strokeWidth={1.5} className="size-5" />
+                  </span>
+                  <span className="text-[0.9375rem] leading-snug text-ink">{h.label}</span>
                 </li>
               ))}
             </ul>

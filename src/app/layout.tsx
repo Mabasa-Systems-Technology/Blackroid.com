@@ -27,7 +27,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Blackroid | Complex Operations. Handled.",
+    default: "Blackroid | AI-Powered Business Operations in South Africa",
     template: "%s | Blackroid",
   },
   description: site.description,
@@ -47,11 +47,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: site.locale,
     siteName: site.name,
-    url: "/",
-    title: "Blackroid | Complex Operations. Handled.",
+    url: "/", // the home page; every other page sets its own
+    title: "Blackroid | AI-Powered Business Operations in South Africa",
     description: site.description,
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blackroid | AI-Powered Business Operations in South Africa",
+    description: site.description,
+  },
   robots: {
     index: true,
     follow: true,
@@ -82,6 +86,8 @@ const toPerson = (m: (typeof team)[number]) => ({
 const founders = team.filter((m) => m.name && m.founder).map(toPerson);
 const staff = team.filter((m) => m.name && !m.founder).map(toPerson);
 
+const socialProfiles = [site.social.linkedin, site.social.instagram, site.social.x].filter((u) => u.startsWith("http"));
+
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -106,6 +112,19 @@ const structuredData = {
         "Systems integration",
       ],
       ...(site.publicEmail ? { email: site.publicEmail } : {}),
+      telephone: site.phone,
+      address: { "@type": "PostalAddress", addressCountry: "ZA" },
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          telephone: site.phone,
+          ...(site.publicEmail ? { email: site.publicEmail } : {}),
+          areaServed: "ZA",
+          availableLanguage: ["English"],
+        },
+      ],
+      ...(socialProfiles.length ? { sameAs: socialProfiles } : {}),
       // Only named people are published as structured data; nothing is invented.
       ...(founders.length ? { founder: founders } : {}),
       ...(staff.length ? { employee: staff } : {}),
