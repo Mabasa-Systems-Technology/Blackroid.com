@@ -31,7 +31,7 @@ export const clients: Client[] = [
     name: "Anthropic",
     logo: { src: "/clients/anthropic.png", width: 1116, height: 128, heightClass: "h-5" },
     feedback: {
-      approved: true,
+      approved: false, // switched off: no verified engagement, so it is not shown as a client
       quote: "We build on Claude to run complex operations at speed, and our specialists stand behind every outcome.",
       // In Blackroid's own voice, not a quote from Anthropic.
       person: "Blackroid",

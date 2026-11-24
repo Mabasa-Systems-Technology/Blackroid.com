@@ -15,7 +15,7 @@ export function HomeCta() {
           </p>
           <div className="mt-10">
             <ButtonLink href="/contact" variant="light">
-              Discuss Your Business Challenge
+              Discuss Your Operations
             </ButtonLink>
           </div>
         </Reveal>

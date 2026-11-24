@@ -31,7 +31,7 @@ export default async function OpengraphImage() {
           Complex Operations. Handled.
         </div>
         <div style={{ marginTop: 32, fontSize: 26, color: "rgba(255,255,255,0.7)" }}>
-          AI-powered infrastructure · Specialist expertise · Measurable outcomes
+          Insurance · Financial Services · Enterprise Engineering
         </div>
       </div>
     </div>,

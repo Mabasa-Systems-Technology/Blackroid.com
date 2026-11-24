@@ -41,7 +41,7 @@ export function Hero() {
             variant="light"
             className="h-14 px-8 text-base shadow-xl shadow-black/25 ring-4 ring-white/15 hover:ring-white/30 sm:h-16 sm:px-10 sm:text-lg"
           >
-            Discuss Your Business Challenge
+            Discuss Your Operations
           </ButtonLink>
         </div>
       </div>

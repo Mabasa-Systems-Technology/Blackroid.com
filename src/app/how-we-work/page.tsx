@@ -7,35 +7,35 @@ import { Reveal } from "@/components/ui/Reveal";
 import { stages } from "@/lib/process";
 
 export const metadata = pageMetadata({
-  title: "How We Work: From Challenge to Delivery",
+  title: "How We Work: Understand, Establish Value, Deliver, Scale",
   description:
-    "Four steps: understand the challenge, define the solution, coordinate delivery, then measure and improve, with clear deliverables and accountability throughout.",
+    "Four stages: understand, establish value, deliver, then scale into managed operations as trust and results grow.",
   path: "/how-we-work",
 });
 
 const models = [
   {
+    title: "Focused assessment",
+    text: "A short engagement to find the problem and size the improvement.",
+  },
+  {
     title: "Defined-scope project",
-    text: "A clearly specified outcome delivered against an agreed scope, timeline and budget. Suited to well-understood requirements.",
+    text: "A clearly specified outcome delivered against an agreed scope, timeline and budget.",
   },
   {
-    title: "Phased delivery",
-    text: "Larger initiatives broken into funded phases, each with its own scope and review point, so investment follows proven progress.",
+    title: "Recurring managed operations",
+    text: "A continuing arrangement, once results and trust have been established.",
   },
   {
-    title: "Ongoing engineering support",
-    text: "A continuing arrangement for maintenance, enhancements and operational support of systems we, or others, have built.",
-  },
-  {
-    title: "Advisory engagement",
-    text: "Focused consulting for architecture, assessments and technical decisions, with a written outcome you can act on.",
+    title: "Engineering project",
+    text: "Enterprise software, integration and modernisation, delivered as a project.",
   },
 ];
 
 const faqs = [
   {
     q: "How does an engagement usually start?",
-    a: "With a conversation about the challenge. If there is a fit, we propose a short Understand the Challenge stage to establish the objectives, constraints and stakeholders before committing to a scope and plan.",
+    a: "With a conversation about the operation. If there is a fit, we propose a focused assessment to establish the problem, its cost and what a measurable improvement would look like, before committing to a wider scope.",
   },
   {
     q: "Can you work alongside our internal teams?",
@@ -47,7 +47,7 @@ const faqs = [
   },
   {
     q: "How do you price engagements?",
-    a: "Pricing depends on scope and engagement model. Defined-scope work is usually quoted as a fixed or phased price after the Understand the Challenge stage; ongoing and advisory work can be arranged on an agreed time-and-materials or retainer basis.",
+    a: "Pricing depends on scope and engagement model. A focused assessment or defined-scope engagement is usually quoted as a fixed or phased price. Recurring managed operations are agreed once results are shown, on an arrangement that suits both sides.",
   },
   {
     q: "How long does a typical engagement take?",
@@ -55,7 +55,7 @@ const faqs = [
   },
   {
     q: "How do you handle confidential information and personal data?",
-    a: "We are happy to sign a non-disclosure agreement before detailed discussions. Systems we build are designed with access control, data minimisation and the requirements of the Protection of Personal Information Act (POPIA) in mind.",
+    a: "We are happy to sign a non-disclosure agreement before detailed discussions. Every engagement runs within agreed contractual, security, data protection and approval boundaries, and we only access what the work needs.",
   },
 ].slice(0, 4);
 
@@ -69,7 +69,7 @@ export default function HowWeWorkPage() {
   return (
     <>
       <JsonLd data={faqLd} />
-      <PageHero title="From challenge to accountable delivery." />
+      <PageHero title="We earn responsibility, step by step." />
 
       <section className="bg-white py-20 lg:py-28">
         <div className="container-site">

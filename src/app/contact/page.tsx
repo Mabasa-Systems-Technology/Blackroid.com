@@ -7,9 +7,9 @@ import { Reveal } from "@/components/ui/Reveal";
 import { site, unsplash } from "@/lib/site";
 
 export const metadata = pageMetadata({
-  title: "Contact: Discuss Your Business Challenge",
+  title: "Contact: Discuss Your Operations",
   description:
-    "Talk to Blackroid about handing over complex operations or improving your enterprise systems. Tell us the challenge and we will tell you the next step.",
+    "Talk to Blackroid about improving your claims or financial operations, or an engineering project. Tell us the challenge and we will tell you the next step.",
   path: "/contact",
 });
 

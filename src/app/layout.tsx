@@ -27,18 +27,18 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Blackroid | AI-Powered Business Operations in South Africa",
+    default: "Blackroid | Operational Services & Enterprise Engineering",
     template: "%s | Blackroid",
   },
   description: site.description,
   applicationName: site.name,
   keywords: [
-    "AI-native business services South Africa",
-    "managed business services",
+    "AI-native operational services South Africa",
     "insurance claims operations",
-    "healthcare claims reconciliation",
-    "financial operations and reconciliation",
-    "enterprise technology and transformation",
+    "claims backlog reduction",
+    "financial reconciliation",
+    "financial operations services",
+    "enterprise engineering",
     "systems integration",
     "legacy systems modernisation",
   ],
@@ -48,12 +48,12 @@ export const metadata: Metadata = {
     locale: site.locale,
     siteName: site.name,
     url: "/", // the home page; every other page sets its own
-    title: "Blackroid | AI-Powered Business Operations in South Africa",
+    title: "Blackroid | Operational Services & Enterprise Engineering",
     description: site.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blackroid | AI-Powered Business Operations in South Africa",
+    title: "Blackroid | Operational Services & Enterprise Engineering",
     description: site.description,
   },
   robots: {
@@ -104,12 +104,12 @@ const structuredData = {
       areaServed: { "@type": "Country", name: site.country },
       audience: { "@type": "BusinessAudience", audienceType: "Established businesses, corporations and institutions" },
       knowsAbout: [
-        "Managed business services",
-        "Insurance operations",
-        "Healthcare claims and billing operations",
-        "Financial operations",
-        "Enterprise technology and transformation",
+        "Operational services",
+        "Insurance claims operations",
+        "Financial reconciliation and operations",
+        "Enterprise software development",
         "Systems integration",
+        "Legacy systems modernisation",
       ],
       ...(site.publicEmail ? { email: site.publicEmail } : {}),
       telephone: site.phone,
@@ -130,7 +130,7 @@ const structuredData = {
       ...(staff.length ? { employee: staff } : {}),
       hasOfferCatalog: {
         "@type": "OfferCatalog",
-        name: "Managed business services and enterprise technology",
+        name: "Operational services and enterprise engineering",
         itemListElement: services.map((s) => ({
           "@type": "Offer",
           itemOffered: {

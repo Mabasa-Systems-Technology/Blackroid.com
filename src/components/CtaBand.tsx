@@ -6,7 +6,7 @@ import { unsplash } from "@/lib/site";
 export function CtaBand({
   title = "Tell us the problem.",
   body = "We will tell you the next step. No obligation.",
-  cta = "Discuss Your Business Challenge",
+  cta = "Discuss Your Operations",
   href = "/contact",
 }: {
   title?: string;

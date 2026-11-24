@@ -3,7 +3,7 @@ export const site = {
   legalName: "Blackroid (Pty) Ltd",
   tagline: "Complex Operations. Handled.",
   description:
-    "AI-native business services in South Africa: AI-powered infrastructure and specialist expertise for insurance, healthcare, finance and enterprise technology.",
+    "AI-native operational services and enterprise engineering in South Africa, for insurance, financial services and businesses across industries.",
   url: (
     process.env.NEXT_PUBLIC_SITE_URL ||
     (process.env.NODE_ENV === "production" ? "https://blackroid.com" : "http://localhost:3000")

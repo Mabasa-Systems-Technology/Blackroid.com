@@ -19,7 +19,7 @@ export function Footer() {
           <div className="lg:col-span-3">
             <Logo tone="light" />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/60">
-              AI-powered infrastructure and specialist expertise for complex operations.
+              Operational services and enterprise engineering.
             </p>
           </div>
 

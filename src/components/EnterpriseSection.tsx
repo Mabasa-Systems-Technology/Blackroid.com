@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Code, Cpu, Plug, RefreshCw, Rocket, Workflow } from "lucide-react";
+import { ArrowUpRight, Code, PackageCheck, Plug, RefreshCw, Server, Wrench } from "lucide-react";
 import type { Service } from "@/lib/services";
 import { Reveal } from "./ui/Reveal";
 import meeting from "../../public/images/enterprise-meeting.webp";
@@ -8,16 +8,16 @@ import engineering from "../../public/images/enterprise-engineering.webp";
 
 /** Short labels with an icon each, so the section can be scanned in a few seconds. */
 const highlights = [
-  { icon: Code, label: "Software engineering" },
+  { icon: Code, label: "Enterprise software development" },
   { icon: Plug, label: "Systems integration" },
   { icon: RefreshCw, label: "Legacy modernisation" },
-  { icon: Rocket, label: "Digital transformation" },
-  { icon: Workflow, label: "Process digitisation" },
-  { icon: Cpu, label: "AI integration" },
+  { icon: Server, label: "Infrastructure engineering" },
+  { icon: Wrench, label: "Business systems maintenance" },
+  { icon: PackageCheck, label: "Custom project delivery" },
 ];
 
 /**
- * Enterprise Technology & Transformation, laid out on its own: a selling heading, six icon tiles
+ * Enterprise Engineering, laid out on its own: a selling heading, six icon tiles
  * and two photographs, instead of the accordion used for the managed services.
  */
 export function EnterpriseSection({ service, label, heading }: { service: Service; label: string; heading: string }) {

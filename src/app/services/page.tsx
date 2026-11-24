@@ -6,9 +6,9 @@ import { ServicesList } from "@/components/ServicesList";
 import { serviceGroups, services } from "@/lib/services";
 
 export const metadata = pageMetadata({
-  title: "Business Services and Enterprise Technology",
+  title: "Operational Services and Enterprise Engineering",
   description:
-    "Managed services for insurance, healthcare and finance operations, plus enterprise technology and transformation, powered by AI and specialist expertise.",
+    "Managed operational outcomes for insurance and financial services, plus enterprise engineering across industries. We begin with a focused engagement and expand as results are shown.",
   path: "/services",
 });
 
@@ -34,7 +34,7 @@ export default function ServicesPage() {
             key={s.slug}
             service={s}
             label={technology.title}
-            heading="Old systems holding you back? We modernise them."
+            heading="Need it built, connected or modernised? We engineer it."
           />
         ))}
 

@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     // Older service addresses land on the matching area (an empty target means the services page).
-    const hub = "enterprise-technology-and-transformation";
+    const hub = "enterprise-engineering";
     const moved: Array<[string, string]> = [
       ["technology-consulting", ""],
       ["strategy-and-advisory", ""],
@@ -34,6 +34,8 @@ const nextConfig: NextConfig = {
       ["data-engineering-and-analytics", hub],
       ["custom-software-development", hub],
       ["engineering-and-implementation", hub],
+      ["enterprise-technology-and-transformation", hub],
+      ["healthcare-operations", ""],
     ];
     // Client sign-in lives in the portal, which handles its own authentication.
     const portal = process.env.NEXT_PUBLIC_CLIENT_PORTAL_URL || "https://portal.blackroid.com";

@@ -7,34 +7,34 @@ import { SectionHeading } from "../ui/SectionHeading";
 /** Common starting points for an engagement, each leading to a pre-filled enquiry. */
 const startingPoints = [
   {
-    problem: "Claims checking is manual, slow and costly.",
-    approach: "Verify and document claims with intelligent infrastructure and specialist review.",
+    problem: "Claims are backing up and costs are rising.",
+    approach: "Reduce the backlog and the cost of administration.",
     service: "Insurance Operations",
   },
   {
-    problem: "Rejected and underpaid medical-aid claims go unrecovered.",
-    approach: "Reconcile them and support payment recovery.",
-    service: "Healthcare Operations",
+    problem: "Reconciliation and exceptions take too much skilled time.",
+    approach: "Resolve them faster and more accurately.",
+    service: "Financial Operations",
   },
   {
-    problem: "Reconciliation and reporting take too much skilled time.",
-    approach: "Hand routine financial operations to a specialist partner.",
+    problem: "Reporting is slow and discrepancies stay unresolved.",
+    approach: "Make the workflow faster and easier to rely on.",
     service: "Financial Operations",
   },
   {
     problem: "Core systems are ageing and do not share data.",
     approach: "Modernise and integrate them without disrupting operations.",
-    service: "Enterprise Technology & Transformation",
+    service: "Enterprise Engineering",
   },
   {
-    problem: "Skilled people are stuck in manual, document-heavy work.",
-    approach: "Bring AI into your existing systems where it removes the effort.",
-    service: "Enterprise Technology & Transformation",
+    problem: "A business system needs building or maintaining.",
+    approach: "Engineer it as a clearly scoped project.",
+    service: "Enterprise Engineering",
   },
   {
     problem: "Processes are slow, manual and hard to measure.",
     approach: "Digitise and redesign how the work gets done.",
-    service: "Enterprise Technology & Transformation",
+    service: "Enterprise Engineering",
   },
 ];
 

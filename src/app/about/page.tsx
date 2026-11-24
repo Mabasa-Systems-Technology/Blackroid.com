@@ -1,16 +1,6 @@
 import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
-import {
-  BarChart3,
-  Cpu,
-  Gauge,
-  HeartPulse,
-  Landmark,
-  PackageCheck,
-  ShieldCheck,
-  Target,
-  UserCheck,
-} from "lucide-react";
+import { BarChart3, Cpu, Gauge, Landmark, PackageCheck, ShieldCheck, Target, UserCheck } from "lucide-react";
 import { CtaBand } from "@/components/CtaBand";
 // import { Leadership } from "@/components/Leadership"; // hidden for now: "The people behind the work."
 import { Principles } from "@/components/Principles";
@@ -20,25 +10,24 @@ import markLight from "../../../public/brand/mark-light.png";
 import aboutHero from "../../../public/images/about-hero.webp";
 
 export const metadata = pageMetadata({
-  title: "About: AI-Native Business Services",
+  title: "About: Operational Services and Engineering",
   description:
-    "Blackroid is a South African AI-native services company combining AI-powered infrastructure with specialist expertise to deliver complete business services.",
+    "Blackroid is an AI-native operational services and enterprise engineering company helping organisations cut cost and delay in complex operations.",
   path: "/about",
 });
 
 const principles = [
   { icon: Target, label: "Business outcomes before technology" },
-  { icon: PackageCheck, label: "Complete service delivery" },
+  { icon: PackageCheck, label: "Accountable delivery" },
   { icon: Gauge, label: "Operational efficiency and accountability" },
-  { icon: UserCheck, label: "Specialist expertise supported by AI" },
+  { icon: UserCheck, label: "Experienced people, supported by AI" },
   { icon: BarChart3, label: "Reliable and measurable results" },
 ];
 
 const focus = [
   { icon: ShieldCheck, label: "Insurance" },
-  { icon: HeartPulse, label: "Healthcare" },
-  { icon: Landmark, label: "Finance" },
-  { icon: Cpu, label: "Technology" },
+  { icon: Landmark, label: "Financial Services" },
+  { icon: Cpu, label: "Enterprise Engineering" },
 ];
 
 export default function AboutPage() {
@@ -59,7 +48,7 @@ export default function AboutPage() {
         </div>
         <div className="container-site grid items-center gap-12 pt-40 pb-16 lg:min-h-[72svh] lg:grid-cols-12 lg:pb-24">
           <div className="lg:col-span-7">
-            <h1 className="rise text-headline font-light text-balance">We take responsibility for the work.</h1>
+            <h1 className="rise text-headline font-light text-balance">We earn responsibility for the work.</h1>
           </div>
           {/* The official B monogram, large, to balance the text column. */}
           <div aria-hidden="true" className="hidden lg:col-span-5 lg:flex lg:justify-end">
@@ -79,16 +68,14 @@ export default function AboutPage() {
               className="space-y-6 text-lg leading-relaxed text-ink-soft lg:col-span-6 lg:col-start-7"
             >
               <p>
-                Blackroid is a South African AI-native services company helping businesses operate more efficiently,
-                reduce costs, and achieve better outcomes.
+                Blackroid is an AI-native operational services and enterprise engineering company. We help organisations
+                improve costly, complex operations, reduce delays and scale efficiently.
               </p>
               <p>
-                We combine AI-powered infrastructure with specialist expertise to take on complex business operations,
-                manage critical processes, and deliver complete services.
+                We start with a defined improvement, show its value, and take on more as trust and results grow. Our
+                delivery is supported by intelligent computing infrastructure developed by Olyxee.
               </p>
-              <p>
-                Our clients focus on growing their businesses while we take responsibility for the work behind them.
-              </p>
+              <p>Every engagement runs within agreed contractual, security and data protection boundaries.</p>
             </Reveal>
           </div>
 

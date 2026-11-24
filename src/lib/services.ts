@@ -1,9 +1,9 @@
 /**
- * Two complementary capabilities: managed business services for defined operational processes,
- * and enterprise technology and transformation. Older service addresses redirect here (see next.config.ts).
+ * Two core services: managed operational outcomes (insurance and financial services) and enterprise
+ * engineering (across industries). Older service addresses redirect here (see next.config.ts).
  *
- * The managed services are areas Blackroid is developing and exploring commercially.
- * Do not describe them as regulated, authorised or already operating at scale until that is verified.
+ * Do not describe any of this as regulated, authorised or certified, and do not claim results or
+ * client work that cannot be verified.
  */
 export type ServiceGroup = "managed" | "technology";
 
@@ -37,13 +37,13 @@ export type Service = {
 
 export const serviceGroups: Record<ServiceGroup, { title: string; intro: string; note?: string }> = {
   managed: {
-    title: "Managed Business Services",
-    intro: "We handle defined operational processes on your behalf.",
-    note: "Areas we are developing with organisations.",
+    title: "Managed Operational Outcomes",
+    intro: "We improve defined operational processes, and take on more as value is shown.",
+    note: "We begin with a focused engagement and expand as results are shown.",
   },
   technology: {
-    title: "Enterprise Technology & Transformation",
-    intro: "We improve the systems your operations run on.",
+    title: "Enterprise Engineering",
+    intro: "We engineer the systems your operations run on.",
   },
 };
 
@@ -55,115 +55,81 @@ export const services: Service[] = [
     title: "Insurance Operations",
     industry: "Insurance",
     plain:
-      "Manual claims checking is slow and costly. Intelligent infrastructure and specialist review can speed up verification and keep every decision documented.",
-    short: "Claims verification, assessment support and exception management for insurers.",
+      "Claims backlogs and slow administration raise cost and delay settlements. Defined operational improvements can reduce both, with your claims decisions staying with you.",
+    short:
+      "Claims backlog reduction, assessment coordination and administration efficiency for insurers and claims administrators.",
     intro:
-      "Blackroid combines intelligent infrastructure and specialist expertise to handle defined insurance operations on behalf of organisations.",
+      "We improve how claims operations run, to cut cost and turnaround time. Your systems, customer relationships and claims decisions stay with you.",
     capabilities: [
-      "Claims verification",
-      "Claims assessment support",
-      "Documentation and evidence review",
-      "Claims exception management",
+      "Claims backlog reduction",
+      "Claims assessment coordination",
+      "Claims administration efficiency",
+      "Claims recovery process improvement",
     ],
     image: "/images/insurance-operations.webp",
     imageAlt: "A smiling specialist standing beside a whiteboard with the word insurance written on it",
-    pitch: "Faster claims decisions, with a clear record behind every one.",
+    pitch: "Lower claims costs and faster turnaround, with decisions staying with you.",
     offerings: [
-      { title: "Claims verification", text: "Check each claim against the policy and the evidence before it is paid." },
-      { title: "Claims assessment support", text: "Hand your assessors organised files that are ready to decide." },
-      { title: "Documentation and evidence review", text: "Review documents for completeness and consistency." },
-      { title: "Claims exception management", text: "Take the disputed and unusual claims off your team's desk." },
+      { title: "Claims backlog reduction", text: "Work through the queue against clear, measurable targets." },
+      { title: "Claims assessment coordination", text: "Keep assessments moving and everyone informed." },
+      { title: "Claims administration efficiency", text: "Cut the manual effort in processing and follow-up." },
+      { title: "Claims recovery improvement", text: "Improve how recoveries are identified and pursued." },
     ],
     gallery: ["/images/insurance-team.webp", "/images/insurance-review.webp"],
     galleryAlt: "Colleagues reviewing a case together at a laptop",
   },
   {
-    slug: "healthcare-operations",
-    number: "02",
-    group: "managed",
-    title: "Healthcare Operations",
-    industry: "Healthcare",
-    plain:
-      "Rejected and underpaid claims quietly drain revenue. Reconciliation and exception management can recover payments that would otherwise be lost.",
-    short: "Medical-aid claims reconciliation, billing exception resolution and payment recovery support.",
-    intro:
-      "Blackroid combines intelligent infrastructure and specialist expertise to handle defined healthcare billing and claims operations on behalf of organisations.",
-    capabilities: [
-      "Medical-aid claims reconciliation",
-      "Billing exception resolution",
-      "Underpaid and rejected claims management",
-      "Payment recovery support",
-    ],
-    image: "/images/healthcare-operations.webp",
-    imageAlt: "A doctor and a nurse reviewing a patient file together",
-    pitch: "Recover the revenue lost between billing and payment.",
-    offerings: [
-      { title: "Medical-aid claims reconciliation", text: "Match what was billed to what was paid, claim by claim." },
-      {
-        title: "Billing exception resolution",
-        text: "Resolve billing errors and mismatches before they become losses.",
-      },
-      {
-        title: "Underpaid and rejected claims",
-        text: "Find, challenge and follow up claims that were short-paid or rejected.",
-      },
-      { title: "Payment recovery support", text: "Help bring money that is owed back into the business." },
-    ],
-    gallery: ["/images/healthcare-team.webp", "/images/healthcare-clinic.webp"],
-    galleryAlt: "A doctor and a colleague going through patient records on a laptop",
-  },
-  {
     slug: "financial-operations",
-    number: "03",
+    number: "02",
     group: "managed",
     title: "Financial Operations",
     industry: "Financial Services",
     plain:
-      "Reconciliation and reporting consume skilled time. Intelligent processes and expert oversight can make financial operations faster and more accurate.",
-    short: "Financial reconciliation, fund administration support, reporting and exception management.",
+      "Reconciliation and exceptions consume skilled time and leave discrepancies unresolved. Defined improvements can raise accuracy and speed, with funds and approvals staying with you.",
+    short:
+      "Financial reconciliation, exception resolution and reporting workflow efficiency for lenders, fund administrators and finance providers.",
     intro:
-      "Blackroid combines intelligent infrastructure and specialist expertise to handle defined financial operations on behalf of organisations.",
+      "We improve how financial operations run, for accuracy and speed. You keep responsibility for funds, approvals and your existing systems.",
     capabilities: [
       "Financial reconciliation",
-      "Fund administration support",
-      "Financial reporting",
-      "Investment operations and exception management",
+      "Transaction and repayment exception resolution",
+      "Financial reporting workflow efficiency",
+      "Operational processing accuracy",
     ],
     image: "/images/financial-operations.webp",
     imageAlt: "A finance specialist reviewing documents beside a finance review board",
-    pitch: "Accurate financial operations, without the manual workload.",
+    pitch: "Fewer unresolved discrepancies, with funds and approvals staying with you.",
     offerings: [
       {
         title: "Financial reconciliation",
         text: "Match records across accounts and systems, and flag what does not agree.",
       },
-      { title: "Fund administration support", text: "Take on the routine administration that keeps a fund running." },
-      { title: "Financial reporting", text: "Produce reporting your leadership and investors can rely on." },
-      { title: "Investment operations", text: "Resolve breaks and exceptions before they reach your clients." },
+      { title: "Transaction and repayment exceptions", text: "Work exceptions through to resolution." },
+      { title: "Reporting workflow efficiency", text: "Make reporting faster to produce and easier to rely on." },
+      { title: "Processing accuracy", text: "Reduce errors and unresolved discrepancies at source." },
     ],
     gallery: ["/images/financial-operations.webp", "/images/finance-charts.webp"],
     galleryAlt: "A finance specialist reviewing documents beside a finance review board",
     galleryPortrait: true,
   },
   {
-    slug: "enterprise-technology-and-transformation",
-    number: "04",
+    slug: "enterprise-engineering",
+    number: "03",
     group: "technology",
-    title: "Enterprise Technology & Transformation",
-    industry: "Enterprise Technology",
+    title: "Enterprise Engineering",
+    industry: "Enterprise Engineering",
     plain:
-      "Legacy systems and disconnected processes slow organisations down. Integration, modernisation and AI can turn them into measurable operational improvements.",
+      "Legacy systems and disconnected processes slow organisations down. Engineering, integration and modernisation turn them into measurable improvements.",
     short:
-      "Enterprise software engineering, systems integration, legacy modernisation, digital transformation and AI integration.",
-    intro:
-      "We help organisations solve business problems by improving the systems and infrastructure that support their operations.",
+      "Enterprise software development, systems integration, legacy modernisation and infrastructure engineering across industries.",
+    intro: "We design, build, connect and modernise the systems businesses depend on, across industries.",
     capabilities: [
-      "Enterprise software engineering",
+      "Enterprise software development",
       "Systems integration",
       "Legacy systems modernisation",
-      "Digital transformation",
-      "Business process digitisation",
-      "AI integration into existing business systems",
+      "Enterprise infrastructure engineering",
+      "Business systems development and maintenance",
+      "Custom technical project delivery",
     ],
     image: "/images/enterprise-transformation.webp",
     imageAlt: "Engineers at their desks working through a system problem together",
